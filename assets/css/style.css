@@ -1,0 +1,112 @@
+/* -------------------- FONTS -------------------- */
+@font-face {
+  font-family: Minion;
+  src: url(../fonts/MinionPro-Regular.otf);
+}
+
+/* -------------------- STYLES -------------------- */
+
+body {
+  font-family: "Minion", Times, serif;
+  font-size: 2rem;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.image-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  position: absolute;
+  z-index: 2;
+}
+
+.image {
+  display: none;
+  position: relative;
+  padding: 15px;
+  max-width: 40vw;
+  max-height: 40vh;
+  object-fit: contain;
+}
+
+.trigger-container {
+  display: flex;
+  flex-wrap: wrap;
+  position: absolute;
+  z-index: 3;
+  justify-content: space-evenly;
+}
+
+.trigger {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  width: 300px;
+  height: 45vh;
+  margin: 10px;
+  /* background-color: yellow;
+  opacity: 20%;
+  mix-blend-mode: multiply; */
+}
+
+#trigger1 {
+  top: 10vh;
+  left: 10vw;
+}
+
+#trigger2 {
+  top: 50vh;
+  left: 10vw;
+}
+
+#trigger3 {
+  top: 90vh;
+  left: 10vw;
+}
+
+#trigger4 {
+  top: 10vh;
+  left: 50vw;
+}
+
+#trigger5 {
+  top: 50vh;
+  left: 50vw;
+}
+
+#trigger6 {
+  top: 90vh;
+  left: 50vw;
+}
+
+footer {
+  position: fixed;
+  z-index: 100;
+  bottom: 15px;
+  left: 60vw;
+}
+
+.about-container {
+  position: relative;
+}
+
+.statement {
+  position: absolute;
+  width: 40vw;
+  right: 0;
+  top: 15px;
+  font-size: 1.1rem;
+}
+
+/* -------------------- MEDIA QUERIES -------------------- */
