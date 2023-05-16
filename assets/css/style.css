@@ -1,18 +1,26 @@
 /* -------------------- FONTS -------------------- */
 @font-face {
-  font-family: Minion;
-  src: url(../fonts/MinionPro-Regular.otf);
+  font-family: Tiempos;
+  src: url(../fonts/TiemposText-Regular.otf);
 }
 
 /* -------------------- STYLES -------------------- */
 body {
-  font-family: "Minion", Times, serif;
-  font-size: 1.5rem;
+  font-family: "Tiempos", Times, serif;
+  font-size: 1.6rem;
+  line-height: 2.1rem;
 }
 
 a {
   text-decoration: none;
   color: inherit;
+}
+
+::selection {
+  background: lightpink; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: lightpink; /* Gecko Browsers */
 }
 
 .container {
@@ -64,7 +72,7 @@ footer {
   position: fixed;
   z-index: 100;
   bottom: 15px;
-  left: 60vw;
+  left: 50vw;
 }
 
 .about-container {
@@ -73,14 +81,14 @@ footer {
 
 .info {
   position: absolute;
-  left: 60vw;
+  left: 50vw;
   top: 15px;
   right: 15px;
 }
 
 .statement {
   position: absolute;
-  left: 60vw;
+  left: 50vw;
   top: 15px;
   right: 15px;
   color: white;
@@ -90,3 +98,5 @@ footer {
   display: block;
   margin-bottom: 0.5em; /* Adjust the margin as desired */
 }
+
+/* -------------------- MEDIA QUERIES -------------------- */

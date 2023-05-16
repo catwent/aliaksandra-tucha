@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico" />
     <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
     <title>Aliaksandra Tucha</title>
   </head>
@@ -82,6 +83,20 @@
 
       const triggers = [];
       const images = [];
+      let lastDisplayedImageTop = 0;
+
+      function checkOverflow() {
+        const viewportHeight = window.innerHeight;
+        if (lastDisplayedImageTop > viewportHeight) {
+          for (let i = 0; i < triggers.length; i++) {
+            triggers[i].style.display = "none";
+          }
+        } else {
+          for (let i = 0; i < triggers.length; i++) {
+            triggers[i].style.display = "block";
+          }
+        }
+      }
 
       for (let i = 0; i < triggerIDs.length; i++) {
         const trigger = document.getElementById(triggerIDs[i]);
@@ -92,16 +107,29 @@
 
         trigger.addEventListener("mouseover", () => {
           image.style.display = "block";
+          lastDisplayedImageTop = image.offsetTop + image.offsetHeight;
+          checkOverflow();
           setTimeout(() => {
             image.style.display = "none";
+            lastDisplayedImageTop = Math.max(
+              lastDisplayedImageTop,
+              image.offsetTop + image.offsetHeight
+            );
+            checkOverflow();
           }, 20000);
         });
       }
 
       images.forEach((image) => {
-        const randomMaxWidth = Math.floor(6 + Math.random() * 22);
+        const randomMaxWidth = Math.floor(6 + Math.random() * 28);
         image.style.maxWidth = randomMaxWidth + "vw";
       });
+
+      window.addEventListener("resize", () => {
+        checkOverflow();
+      });
+
+      checkOverflow();
     </script>
   </body>
 </html>

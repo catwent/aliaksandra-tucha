@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico" />
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>About</title>
   </head>
@@ -35,6 +36,8 @@
         "what it’s like to find the people that feel like a new family for a moment or for many.",
       ];
 
+      var colorState = Array(textArray.length).fill(false);
+
       var statementDiv = document.querySelector(".statement");
       textArray.forEach(function (line, index) {
         var span = document.createElement("span");
@@ -43,6 +46,7 @@
 
         if (index < 2) {
           span.style.color = "black";
+          colorState[index] = true;
         }
       });
 
@@ -54,16 +58,14 @@
         triggerContainer.appendChild(trigger);
 
         trigger.addEventListener("mouseover", function () {
-          if (index >= 2) {
+          if (index >= 2 && !colorState[index]) {
             var statementSpans = statementDiv.querySelectorAll("span");
-            statementSpans[index].style.color =
-              statementSpans[index].style.color === "black" ? "white" : "black";
+            statementSpans[index].style.color = "black";
+            colorState[index] = true;
 
             setTimeout(function () {
-              statementSpans[index].style.color =
-                statementSpans[index].style.color === "black"
-                  ? "white"
-                  : "black";
+              statementSpans[index].style.color = "white";
+              colorState[index] = false;
             }, 20000);
           }
         });
