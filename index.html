@@ -4,18 +4,40 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
     <title>Aliaksandra Tucha</title>
   </head>
   <body>
     <div class="container">
       <div class="image-container">
-        <img class="image" id="image1" src="assets/images/2.jpg" />
-        <img class="image" id="image2" src="assets/images/5.jpg" />
-        <img class="image" id="image3" src="assets/images/12.jpg" />
-        <img class="image" id="image4" src="assets/images/9.jpg" />
-        <img class="image" id="image5" src="assets/images/3.jpg" />
-        <img class="image" id="image6" src="assets/images/20.jpg" />
+        <img class="image" id="image1" src="assets/images/1.jpg" />
+        <img class="image" id="image2" src="assets/images/2.jpg" />
+        <img class="image" id="image3" src="assets/images/3.jpg" />
+        <img class="image" id="image4" src="assets/images/4.jpg" />
+        <img class="image" id="image5" src="assets/images/5.jpg" />
+        <img class="image" id="image6" src="assets/images/6.jpg" />
+        <img class="image" id="image7" src="assets/images/7.jpg" />
+        <img class="image" id="image8" src="assets/images/8.jpg" />
+        <img class="image" id="image9" src="assets/images/9.jpg" />
+        <img class="image" id="image10" src="assets/images/10.jpg" />
+        <img class="image" id="image11" src="assets/images/11.jpg" />
+        <img class="image" id="image12" src="assets/images/12.jpg" />
+        <img class="image" id="image13" src="assets/images/13.jpg" />
+        <img class="image" id="image14" src="assets/images/14.jpg" />
+        <img class="image" id="image15" src="assets/images/15.jpg" />
+        <img class="image" id="image16" src="assets/images/16.jpg" />
+        <img class="image" id="image17" src="assets/images/17.jpg" />
+        <img class="image" id="image18" src="assets/images/18.jpg" />
+        <img class="image" id="image19" src="assets/images/19.jpg" />
+        <img class="image" id="image20" src="assets/images/20.jpg" />
+        <img class="image" id="image21" src="assets/images/21.jpg" />
+        <img class="image" id="image22" src="assets/images/22.jpg" />
+        <img class="image" id="image23" src="assets/images/23.jpg" />
+        <img class="image" id="image24" src="assets/images/24.jpg" />
+        <img class="image" id="image25" src="assets/images/25.jpg" />
+        <img class="image" id="image26" src="assets/images/26.jpg" />
+        <img class="image" id="image27" src="assets/images/27.jpg" />
+        <img class="image" id="image28" src="assets/images/28.jpg" />
       </div>
       <div class="trigger-container">
         <div class="trigger" id="trigger1"></div>
@@ -24,9 +46,62 @@
         <div class="trigger" id="trigger4"></div>
         <div class="trigger" id="trigger5"></div>
         <div class="trigger" id="trigger6"></div>
+        <div class="trigger" id="trigger7"></div>
+        <div class="trigger" id="trigger8"></div>
+        <div class="trigger" id="trigger9"></div>
+        <div class="trigger" id="trigger10"></div>
+        <div class="trigger" id="trigger11"></div>
+        <div class="trigger" id="trigger12"></div>
+        <div class="trigger" id="trigger13"></div>
+        <div class="trigger" id="trigger14"></div>
+        <div class="trigger" id="trigger15"></div>
+        <div class="trigger" id="trigger16"></div>
+        <div class="trigger" id="trigger17"></div>
+        <div class="trigger" id="trigger18"></div>
+        <div class="trigger" id="trigger19"></div>
+        <div class="trigger" id="trigger20"></div>
+        <div class="trigger" id="trigger21"></div>
+        <div class="trigger" id="trigger22"></div>
+        <div class="trigger" id="trigger23"></div>
+        <div class="trigger" id="trigger24"></div>
+        <div class="trigger" id="trigger25"></div>
+        <div class="trigger" id="trigger26"></div>
+        <div class="trigger" id="trigger27"></div>
+        <div class="trigger" id="trigger28"></div>
       </div>
     </div>
-    <footer><a href="about.html">Aliaksandra Tucha</a></footer>
-    <script src="assets/scripts/script.js"></script>
+    <footer><a href="about.html">–Aliaksandra Tucha</a></footer>
+    <script>
+      const triggerIDs = [];
+      const imageIDs = [];
+
+      for (let i = 1; i <= 28; i++) {
+        triggerIDs.push("trigger" + i);
+        imageIDs.push("image" + i);
+      }
+
+      const triggers = [];
+      const images = [];
+
+      for (let i = 0; i < triggerIDs.length; i++) {
+        const trigger = document.getElementById(triggerIDs[i]);
+        const image = document.getElementById(imageIDs[i]);
+
+        triggers.push(trigger);
+        images.push(image);
+
+        trigger.addEventListener("mouseover", () => {
+          image.style.display = "block";
+          setTimeout(() => {
+            image.style.display = "none";
+          }, 20000);
+        });
+      }
+
+      images.forEach((image) => {
+        const randomMaxWidth = Math.floor(6 + Math.random() * 22);
+        image.style.maxWidth = randomMaxWidth + "vw";
+      });
+    </script>
   </body>
 </html>

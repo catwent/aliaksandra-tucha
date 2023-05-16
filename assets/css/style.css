@@ -5,10 +5,9 @@
 }
 
 /* -------------------- STYLES -------------------- */
-
 body {
   font-family: "Minion", Times, serif;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 a {
@@ -29,14 +28,14 @@ a {
   align-items: flex-start;
   position: absolute;
   z-index: 2;
+  padding-bottom: 30px;
 }
 
 .image {
   display: none;
   position: relative;
   padding: 15px;
-  max-width: 40vw;
-  max-height: 40vh;
+  /* max-width: 20vw; */
   object-fit: contain;
 }
 
@@ -45,50 +44,21 @@ a {
   flex-wrap: wrap;
   position: absolute;
   z-index: 3;
-  justify-content: space-evenly;
+  justify-content: stretch;
+  align-items: stretch; /* Add this line to stretch the triggers vertically */
+  height: 90vh;
 }
 
 .trigger {
-  display: flex;
-  flex-wrap: wrap;
-  flex-grow: 1;
-  width: 300px;
-  height: 45vh;
+  flex: 1 0 auto; /* Change flex properties to allow stretching */
+  min-width: 150px;
   margin: 10px;
-  /* background-color: yellow;
+  /* background-color: yellow; */
   opacity: 20%;
-  mix-blend-mode: multiply; */
+  mix-blend-mode: multiply;
 }
 
-#trigger1 {
-  top: 10vh;
-  left: 10vw;
-}
-
-#trigger2 {
-  top: 50vh;
-  left: 10vw;
-}
-
-#trigger3 {
-  top: 90vh;
-  left: 10vw;
-}
-
-#trigger4 {
-  top: 10vh;
-  left: 50vw;
-}
-
-#trigger5 {
-  top: 50vh;
-  left: 50vw;
-}
-
-#trigger6 {
-  top: 90vh;
-  left: 50vw;
-}
+/* Additional styles if needed */
 
 footer {
   position: fixed;
@@ -101,12 +71,22 @@ footer {
   position: relative;
 }
 
-.statement {
+.info {
   position: absolute;
-  width: 40vw;
-  right: 0;
+  left: 60vw;
   top: 15px;
-  font-size: 1.1rem;
+  right: 15px;
 }
 
-/* -------------------- MEDIA QUERIES -------------------- */
+.statement {
+  position: absolute;
+  left: 60vw;
+  top: 15px;
+  right: 15px;
+  color: white;
+}
+
+.statement span {
+  display: block;
+  margin-bottom: 0.5em; /* Adjust the margin as desired */
+}
