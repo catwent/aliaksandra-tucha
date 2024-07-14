@@ -1,54 +1,49 @@
-const trigger1 = document.getElementById("trigger1");
-const trigger2 = document.getElementById("trigger2");
-const trigger3 = document.getElementById("trigger3");
-const trigger4 = document.getElementById("trigger4");
-const trigger5 = document.getElementById("trigger5");
-const trigger6 = document.getElementById("trigger6");
-const image1 = document.getElementById("image1");
-const image2 = document.getElementById("image2");
-const image3 = document.getElementById("image3");
-const image4 = document.getElementById("image4");
-const image5 = document.getElementById("image5");
-const image6 = document.getElementById("image6");
+document.addEventListener("DOMContentLoaded", () => {
+  const imageIDs = [];
 
-trigger1.addEventListener("mouseover", () => {
-  image1.style.display = "block";
-  setTimeout(() => {
-    image1.style.display = "none";
-  }, 10000);
-});
+  for (let i = 1; i <= 28; i++) {
+    imageIDs.push("image" + i);
+  }
 
-trigger2.addEventListener("mouseover", () => {
-  image2.style.display = "block";
-  setTimeout(() => {
-    image2.style.display = "none";
-  }, 10000);
-});
+  // Function to set random position and size for an image
+  const setRandomPositionAndSize = (image) => {
+    // Set a random max-width for the image
+    const randomMaxWidth = Math.floor(6 + Math.random() * 28);
+    image.style.maxWidth = randomMaxWidth + "vw";
 
-trigger3.addEventListener("mouseover", () => {
-  image3.style.display = "block";
-  setTimeout(() => {
-    image3.style.display = "none";
-  }, 10000);
-});
+    // Calculate the random position within the viewport
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
 
-trigger4.addEventListener("mouseover", () => {
-  image4.style.display = "block";
-  setTimeout(() => {
-    image4.style.display = "none";
-  }, 10000);
-});
+    const randomLeft = Math.random() * (viewportWidth - randomMaxWidth);
+    const randomTop = Math.random() * (viewportHeight - randomMaxWidth);
 
-trigger5.addEventListener("mouseover", () => {
-  image5.style.display = "block";
-  setTimeout(() => {
-    image5.style.display = "none";
-  }, 10000);
-});
+    image.style.position = "absolute";
+    image.style.left = randomLeft + "px";
+    image.style.top = randomTop + "px";
 
-trigger6.addEventListener("mouseover", () => {
-  image6.style.display = "block";
-  setTimeout(() => {
-    image6.style.display = "none";
-  }, 10000);
+    // Log position for debugging
+    console.log(
+      `Image ${image.id} - Left: ${randomLeft}px, Top: ${randomTop}px`
+    );
+  };
+
+  // Loop through all images
+  for (let i = 0; i < imageIDs.length; i++) {
+    const image = document.getElementById(imageIDs[i]);
+
+    // Initially hide the images
+    image.style.display = "none";
+
+    // Set random position and size for each image
+    setRandomPositionAndSize(image);
+
+    // Add event listener to trigger image display on mouseover
+    image.addEventListener("mouseover", () => {
+      image.style.display = "block";
+      setTimeout(() => {
+        image.style.display = "none";
+      }, 10000);
+    });
+  }
 });

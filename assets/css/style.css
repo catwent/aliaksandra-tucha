@@ -1,14 +1,24 @@
 /* -------------------- FONTS -------------------- */
 @font-face {
-  font-family: Tiempos;
-  src: url(../fonts/TiemposText-Regular.otf);
+  font-family: EBGaramond;
+  src: url(../fonts/EBGaramond-VariableFont_wght.ttf);
 }
 
 /* -------------------- STYLES -------------------- */
-body {
-  font-family: "Tiempos", Times, serif;
-  font-size: 1.6rem;
-  line-height: 2.1rem;
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%; /* Ensures full width */
+  background-color: #ffffff; /* Changed background color to white */
+  font-family: "EBGaramond", Garamond, serif;
+  font-size: 1.4rem;
+  position: relative; /* Allows absolute positioning of the image */
+  padding: 0.5em 0.5em 7vh; /* Increase bottom padding to 15vh while keeping others at 1em */
+  box-sizing: border-box; /* Ensures padding is included in the total width and height */
+  overflow: hidden; /* Prevent overflow */
 }
 
 a {
@@ -16,63 +26,19 @@ a {
   color: inherit;
 }
 
-::selection {
-  background: lightpink; /* WebKit/Blink Browsers */
-}
-::-moz-selection {
-  background: lightpink; /* Gecko Browsers */
-}
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  position: relative;
-  z-index: 1;
-}
-
-.image-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  position: absolute;
-  z-index: 2;
-  padding-bottom: 30px;
-}
-
-.image {
-  display: none;
-  position: relative;
-  padding: 15px;
-  /* max-width: 20vw; */
-  object-fit: contain;
-}
-
-.trigger-container {
-  display: flex;
-  flex-wrap: wrap;
-  position: absolute;
-  z-index: 3;
-  justify-content: stretch;
-  align-items: stretch; /* Add this line to stretch the triggers vertically */
-  height: 90vh;
-}
-
-.trigger {
-  flex: 1 0 auto; /* Change flex properties to allow stretching */
-  min-width: 150px;
-  margin: 10px;
-  /* background-color: yellow; */
-  opacity: 20%;
-  mix-blend-mode: multiply;
-}
-
-/* Additional styles if needed */
-
 footer {
   position: fixed;
   z-index: 100;
   bottom: 15px;
   left: 50vw;
+}
+
+#random-image {
+  position: absolute; /* Position image absolutely within the viewport */
+  display: block;
+  max-width: none; /* Remove max width for random sizing */
+  max-height: none; /* Remove max height for random sizing */
+  object-fit: contain; /* Ensures the image maintains aspect ratio */
 }
 
 .about-container {
@@ -91,12 +57,10 @@ footer {
   left: 50vw;
   top: 15px;
   right: 15px;
-  color: white;
+  color: white; /* This will set the default color */
 }
 
 .statement span {
   display: block;
-  margin-bottom: 0.5em; /* Adjust the margin as desired */
+  margin-bottom: 0em; /* Adjust the margin as desired */
 }
-
-/* -------------------- MEDIA QUERIES -------------------- */
