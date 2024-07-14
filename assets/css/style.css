@@ -43,6 +43,7 @@ footer {
 
 .about-container {
   position: relative;
+  padding: -10px;
 }
 
 .info {
@@ -68,8 +69,8 @@ footer {
 
 @media (max-width: 600px) {
   body {
-    font-size: 0.9rem; /* Adjust font size for smaller screens */
-    line-height: 0.9rem;
+    font-size: 0.95rem; /* Adjust font size for smaller screens */
+    line-height: 1rem;
     margin: 0;
     padding: 0 !important;
   }
