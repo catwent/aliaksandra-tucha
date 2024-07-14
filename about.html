@@ -22,7 +22,7 @@
         "And photographs come closest in telling you",
         "what it’s like to miss my family in Belarus",
         "and",
-        "what it’s like to construct my own story within the familial narrative;",
+        "what it’s like construct my own story within the familial narrative;",
         "what it’s like to put together a home so far away but filled with familiar symbols;",
         "what it’s like to console my dear ones in the face of a war;",
         "what it’s like to hold a warm quail egg,",
@@ -44,48 +44,104 @@
         span.style.color = index < 2 ? "black" : "white"; // First two in black, rest in white
       });
 
-      let lastMouseX = 0;
-      let lastMouseY = 0;
-      let isCooldown = false; // Cooldown flag
+      // Check if the device is a mobile device
+      var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-      document.addEventListener("mousemove", function (event) {
-        const deltaX = event.clientX - lastMouseX;
-        const deltaY = event.clientY - lastMouseY;
-        const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+      if (isMobile) {
+        // Add touch event listeners for mobile devices
+        var lastTouchX = 0;
+        var lastTouchY = 0;
+        var isCooldown = false; // Cooldown flag
 
-        if (distance > 2 && !isCooldown) {
-          let availableIndices = colorState
-            .map((state, index) => (state ? null : index))
-            .filter((index) => index !== null);
+        document.addEventListener("touchmove", function (event) {
+          const touch = event.touches[0];
+          const touchX = touch.clientX;
+          const touchY = touch.clientY;
 
-          if (availableIndices.length > 0) {
-            let randomIndex =
-              availableIndices[
-                Math.floor(Math.random() * availableIndices.length)
-              ];
+          const deltaX = touchX - lastTouchX;
+          const deltaY = touchY - lastTouchY;
+          const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
-            // Change color
-            var statementSpans = statementDiv.querySelectorAll("span");
-            statementSpans[randomIndex].style.color = "black";
-            colorState[randomIndex] = true;
+          if (distance > 200 && !isCooldown) {
+            // Adjust the distance threshold as needed
+            let availableIndices = colorState
+              .map((state, index) => (state ? null : index))
+              .filter((index) => index !== null);
 
-            // Reset color after 15 seconds
-            setTimeout(function () {
-              statementSpans[randomIndex].style.color = "white";
-              colorState[randomIndex] = false;
-            }, 15000);
+            if (availableIndices.length > 0) {
+              let randomIndex =
+                availableIndices[
+                  Math.floor(Math.random() * availableIndices.length)
+                ];
 
-            // Set cooldown to avoid immediate retriggering
-            isCooldown = true;
-            setTimeout(() => {
-              isCooldown = false;
-            }, 100); // Cooldown period (200ms)
+              // Change color
+              var statementSpans = statementDiv.querySelectorAll("span");
+              statementSpans[randomIndex].style.color = "black";
+              colorState[randomIndex] = true;
+
+              // Reset color after 15 seconds
+              setTimeout(function () {
+                statementSpans[randomIndex].style.color = "white";
+                colorState[randomIndex] = false;
+              }, 15000);
+
+              // Set cooldown to avoid immediate retriggering
+              isCooldown = true;
+              setTimeout(() => {
+                isCooldown = false;
+              }, 200); // Cooldown period (adjust as needed)
+            }
           }
-        }
 
-        lastMouseX = event.clientX;
-        lastMouseY = event.clientY;
-      });
+          lastTouchX = touchX;
+          lastTouchY = touchY;
+        });
+      } else {
+        // Add mousemove event listener for non-mobile devices
+        var lastMouseX = 0;
+        var lastMouseY = 0;
+        var isCooldown = false; // Cooldown flag
+
+        document.addEventListener("mousemove", function (event) {
+          const deltaX = event.clientX - lastMouseX;
+          const deltaY = event.clientY - lastMouseY;
+          const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+          if (distance > 200 && !isCooldown) {
+            // Adjust the distance threshold as needed
+            let availableIndices = colorState
+              .map((state, index) => (state ? null : index))
+              .filter((index) => index !== null);
+
+            if (availableIndices.length > 0) {
+              let randomIndex =
+                availableIndices[
+                  Math.floor(Math.random() * availableIndices.length)
+                ];
+
+              // Change color
+              var statementSpans = statementDiv.querySelectorAll("span");
+              statementSpans[randomIndex].style.color = "black";
+              colorState[randomIndex] = true;
+
+              // Reset color after 15 seconds
+              setTimeout(function () {
+                statementSpans[randomIndex].style.color = "white";
+                colorState[randomIndex] = false;
+              }, 15000);
+
+              // Set cooldown to avoid immediate retriggering
+              isCooldown = true;
+              setTimeout(() => {
+                isCooldown = false;
+              }, 200); // Cooldown period (adjust as needed)
+            }
+          }
+
+          lastMouseX = event.clientX;
+          lastMouseY = event.clientY;
+        });
+      }
     </script>
   </body>
 </html>
