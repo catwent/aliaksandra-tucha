@@ -49,52 +49,14 @@
 
       if (isMobile) {
         // Add touch event listeners for mobile devices
-        var lastTouchX = 0;
-        var lastTouchY = 0;
-        var isCooldown = false; // Cooldown flag
-
-        document.addEventListener("touchmove", function (event) {
-          const touch = event.touches[0];
-          const touchX = touch.clientX;
-          const touchY = touch.clientY;
-
-          const deltaX = touchX - lastTouchX;
-          const deltaY = touchY - lastTouchY;
-          const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
-          if (distance > 200 && !isCooldown) {
-            // Adjust the distance threshold as needed
-            let availableIndices = colorState
-              .map((state, index) => (state ? null : index))
-              .filter((index) => index !== null);
-
-            if (availableIndices.length > 0) {
-              let randomIndex =
-                availableIndices[
-                  Math.floor(Math.random() * availableIndices.length)
-                ];
-
-              // Change color
-              var statementSpans = statementDiv.querySelectorAll("span");
-              statementSpans[randomIndex].style.color = "black";
-              colorState[randomIndex] = true;
-
-              // Reset color after 15 seconds
-              setTimeout(function () {
-                statementSpans[randomIndex].style.color = "white";
-                colorState[randomIndex] = false;
-              }, 15000);
-
-              // Set cooldown to avoid immediate retriggering
-              isCooldown = true;
-              setTimeout(() => {
-                isCooldown = false;
-              }, 200); // Cooldown period (adjust as needed)
-            }
+        document.addEventListener("touchstart", function (event) {
+          if (!isCooldown) {
+            changeRandomTextColor();
+            isCooldown = true; // Set cooldown
+            setTimeout(() => {
+              isCooldown = false; // Reset cooldown
+            }, 500); // Cooldown period (adjust as needed)
           }
-
-          lastTouchX = touchX;
-          lastTouchY = touchY;
         });
       } else {
         // Add mousemove event listener for non-mobile devices
@@ -108,39 +70,40 @@
           const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
           if (distance > 200 && !isCooldown) {
-            // Adjust the distance threshold as needed
-            let availableIndices = colorState
-              .map((state, index) => (state ? null : index))
-              .filter((index) => index !== null);
-
-            if (availableIndices.length > 0) {
-              let randomIndex =
-                availableIndices[
-                  Math.floor(Math.random() * availableIndices.length)
-                ];
-
-              // Change color
-              var statementSpans = statementDiv.querySelectorAll("span");
-              statementSpans[randomIndex].style.color = "black";
-              colorState[randomIndex] = true;
-
-              // Reset color after 15 seconds
-              setTimeout(function () {
-                statementSpans[randomIndex].style.color = "white";
-                colorState[randomIndex] = false;
-              }, 15000);
-
-              // Set cooldown to avoid immediate retriggering
-              isCooldown = true;
-              setTimeout(() => {
-                isCooldown = false;
-              }, 200); // Cooldown period (adjust as needed)
-            }
+            changeRandomTextColor();
+            isCooldown = true; // Set cooldown
+            setTimeout(() => {
+              isCooldown = false; // Reset cooldown
+            }, 500); // Cooldown period (adjust as needed)
           }
 
           lastMouseX = event.clientX;
           lastMouseY = event.clientY;
         });
+      }
+
+      function changeRandomTextColor() {
+        let availableIndices = colorState
+          .map((state, index) => (state ? null : index))
+          .filter((index) => index !== null);
+
+        if (availableIndices.length > 0) {
+          let randomIndex =
+            availableIndices[
+              Math.floor(Math.random() * availableIndices.length)
+            ];
+
+          // Change color
+          var statementSpans = statementDiv.querySelectorAll("span");
+          statementSpans[randomIndex].style.color = "black";
+          colorState[randomIndex] = true;
+
+          // Reset color after 15 seconds
+          setTimeout(function () {
+            statementSpans[randomIndex].style.color = "white";
+            colorState[randomIndex] = false;
+          }, 15000);
+        }
       }
     </script>
   </body>
