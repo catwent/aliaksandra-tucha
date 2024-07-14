@@ -68,6 +68,10 @@ footer {
 /* -------------------- MEDIA QUERIES -------------------- */
 
 @media (max-width: 600px) {
+  html {
+    touch-action: manipulation;
+  }
+
   body {
     font-size: 0.95rem; /* Adjust font size for smaller screens */
     line-height: 1rem;
