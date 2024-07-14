@@ -64,3 +64,24 @@ footer {
   display: block;
   margin-bottom: 0em; /* Adjust the margin as desired */
 }
+
+/* -------------------- MEDIA QUERIES -------------------- */
+
+@media (max-width: 600px) {
+  body {
+    font-size: 0.3rem; /* Adjust font size for smaller screens */
+  }
+
+  #random-image {
+    max-width: 80%; /* Ensure images don't overflow on mobile */
+  }
+
+  .statement,
+  .info {
+    left: 15px;
+  }
+
+  footer {
+    left: 15px;
+  }
+}
