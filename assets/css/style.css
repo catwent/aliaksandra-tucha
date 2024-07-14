@@ -76,9 +76,12 @@ footer {
     max-width: 80%; /* Ensure images don't overflow on mobile */
   }
 
+  .info,
   .statement,
-  .info {
+  .statement span {
     left: 15px;
+    margin: 0;
+    padding: 0;
   }
 
   footer {
