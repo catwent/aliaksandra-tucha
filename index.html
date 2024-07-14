@@ -30,7 +30,7 @@
         "Dormitory roses.jpg",
         "Football.jpg",
         "Grandmother and mother tending to the kitchen garden.jpg",
-        "Grandmother prayinf for my driving.jpg",
+        "Grandmother praying for my driving.jpg",
         "Hangover picnic.jpg",
         "Hedgehog.jpg",
         "Hickey.jpg",
@@ -54,6 +54,7 @@
       const displayedImages = new Set(); // Track displayed images
       let lastX = 0;
       let lastY = 0;
+      let isCooldown = false; // Cooldown flag
 
       // Desktop mouse movement event
       document.addEventListener("mousemove", (event) => {
@@ -71,7 +72,13 @@
 
       // Mobile touch event
       document.addEventListener("touchstart", (event) => {
-        loadNewImage();
+        if (!isCooldown) {
+          loadNewImage();
+          isCooldown = true; // Set cooldown
+          setTimeout(() => {
+            isCooldown = false; // Reset cooldown
+          }, 300); // Adjust cooldown duration as needed
+        }
       });
 
       function loadNewImage() {
@@ -105,8 +112,8 @@
           const viewportWidth = window.innerWidth;
           const viewportHeight = window.innerHeight;
 
-          const padding = 16; // 1em in pixels
-          const bottomPadding = viewportHeight * 0.1; // 10vh in pixels
+          const padding = 15; // 15px padding for top, left, right
+          const bottomPadding = viewportHeight * 0.07; // 7vh for bottom
 
           const maxX =
             viewportWidth - (viewportWidth * randomWidth) / 100 - padding * 2; // Adjusted for padding
@@ -116,7 +123,7 @@
             bottomPadding -
             padding; // Adjusted for padding
 
-          // Favor corners more: increase the corner factor
+          // Favor corners more
           const cornerFavorFactor = 0.15; // Decrease to favor corners even more
           const randomX =
             Math.random() * maxX * cornerFavorFactor +
