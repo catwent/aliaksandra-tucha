@@ -44,44 +44,10 @@
         span.style.color = index < 2 ? "black" : "white"; // First two in black, rest in white
       });
 
-      // Check if the device is a mobile device
-      var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      // Cooldown flag
+      var isCooldown = false;
 
-      if (isMobile) {
-        // Add touch event listeners for mobile devices
-        document.addEventListener("touchstart", function (event) {
-          if (!isCooldown) {
-            changeRandomTextColor();
-            isCooldown = true; // Set cooldown
-            setTimeout(() => {
-              isCooldown = false; // Reset cooldown
-            }, 500); // Cooldown period (adjust as needed)
-          }
-        });
-      } else {
-        // Add mousemove event listener for non-mobile devices
-        var lastMouseX = 0;
-        var lastMouseY = 0;
-        var isCooldown = false; // Cooldown flag
-
-        document.addEventListener("mousemove", function (event) {
-          const deltaX = event.clientX - lastMouseX;
-          const deltaY = event.clientY - lastMouseY;
-          const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
-
-          if (distance > 200 && !isCooldown) {
-            changeRandomTextColor();
-            isCooldown = true; // Set cooldown
-            setTimeout(() => {
-              isCooldown = false; // Reset cooldown
-            }, 500); // Cooldown period (adjust as needed)
-          }
-
-          lastMouseX = event.clientX;
-          lastMouseY = event.clientY;
-        });
-      }
-
+      // Function to change a random text color to black
       function changeRandomTextColor() {
         let availableIndices = colorState
           .map((state, index) => (state ? null : index))
@@ -104,6 +70,43 @@
             colorState[randomIndex] = false;
           }, 15000);
         }
+      }
+
+      // Check if the device is a mobile device
+      var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+      if (isMobile) {
+        // Add touch event listener for mobile devices
+        document.addEventListener("touchstart", function (event) {
+          if (!isCooldown) {
+            changeRandomTextColor();
+            isCooldown = true; // Set cooldown
+            setTimeout(() => {
+              isCooldown = false; // Reset cooldown
+            }, 500); // Cooldown period (adjust as needed)
+          }
+        });
+      } else {
+        // Add mousemove event listener for non-mobile devices
+        var lastMouseX = 0;
+        var lastMouseY = 0;
+
+        document.addEventListener("mousemove", function (event) {
+          const deltaX = event.clientX - lastMouseX;
+          const deltaY = event.clientY - lastMouseY;
+          const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+          if (distance > 10 && !isCooldown) {
+            changeRandomTextColor();
+            isCooldown = true; // Set cooldown
+            setTimeout(() => {
+              isCooldown = false; // Reset cooldown
+            }, 100); // Cooldown period (adjust as needed)
+          }
+
+          lastMouseX = event.clientX;
+          lastMouseY = event.clientY;
+        });
       }
     </script>
   </body>

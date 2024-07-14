@@ -55,8 +55,7 @@ footer {
 .statement {
   position: absolute;
   left: 50vw;
-  top: 15px;
-  right: 15px;
+  right: 5px;
   color: white; /* Default text color; should be the same as the background color */
 }
 
@@ -69,7 +68,8 @@ footer {
 
 @media (max-width: 600px) {
   body {
-    font-size: 1rem; /* Adjust font size for smaller screens */
+    font-size: 0.9rem; /* Adjust font size for smaller screens */
+    line-height: 0.9rem;
     margin: 0;
     padding: 0 !important;
   }
@@ -81,12 +81,14 @@ footer {
   .info,
   .statement,
   .statement span {
-    left: 15px;
+    left: 10px;
+    top: 10px;
+    right: 10px;
     margin: 0;
     padding: 0;
   }
 
   footer {
-    left: 15px;
+    left: 10px;
   }
 }
