@@ -57,7 +57,7 @@ footer {
   left: 50vw;
   top: 15px;
   right: 15px;
-  color: white; /* This will set the default color */
+  color: white; /* Default text color; should be the same as the background color */
 }
 
 .statement span {
@@ -69,7 +69,7 @@ footer {
 
 @media (max-width: 600px) {
   body {
-    font-size: 0.3rem; /* Adjust font size for smaller screens */
+    font-size: 0.8rem; /* Adjust font size for smaller screens */
   }
 
   #random-image {
