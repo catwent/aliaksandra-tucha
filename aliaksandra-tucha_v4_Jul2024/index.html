@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/x-icon" href="assets/favicon/favicon.ico" />
+    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
+    <title>Aliaksandra Tucha</title>
+    <style>
+      /* Add any necessary CSS for stacking images */
+      #random-image {
+        position: absolute;
+        transition: opacity 0.3s ease; /* Faster fade-out */
+      }
+    </style>
+  </head>
+  <body>
+    <img id="random-image" style="display: none" alt="Random Image" />
+    <footer><a href="about.html">–Aliaksandra Tucha</a></footer>
+    <script>
+      const images = [
+        "After Ed Hopper.jpg",
+        "At grandmother_s.jpg",
+        "Babies in the dorm.jpg",
+        "Boy place turned into girl place.jpg",
+        "Brother and father.jpg",
+        "Brother drying his hair.jpg",
+        "Carigan Haircut.jpg",
+        "Dormitory roses.jpg",
+        "Football.jpg",
+        "Grandmother and mother tending to the kitchen garden.jpg",
+        "Grandmother prayinf for my driving.jpg",
+        "Hangover picnic.jpg",
+        "Hedgehog.jpg",
+        "Hickey.jpg",
+        "In bed.jpg",
+        "Karma is my boyfriend.jpg",
+        "Kupalle and new shoes.jpg",
+        "Landscape Poland.jpg",
+        "Leda and Seyma hugging.jpg",
+        "Mother now portrait.jpg",
+        "Mother, brother, father.jpg",
+        "Mother, brother, I, quail eggs.jpg",
+        "Natasha.jpg",
+        "Neck kiss.jpg",
+        "Self-portrait.jpg",
+        "Shower.jpg",
+        "Stockings.jpg",
+        "Sweaty ear.jpg",
+        "Tangled at parent_s house.jpg",
+      ];
+
+      const displayedImages = new Set(); // Track displayed images
+      let lastX = 0;
+      let lastY = 0;
+
+      // Desktop mouse movement event
+      document.addEventListener("mousemove", (event) => {
+        const distance = Math.sqrt(
+          Math.pow(event.clientX - lastX, 2) +
+            Math.pow(event.clientY - lastY, 2)
+        );
+
+        if (distance > 200) {
+          loadNewImage();
+          lastX = event.clientX;
+          lastY = event.clientY;
+        }
+      });
+
+      // Mobile touch event
+      document.addEventListener("touchstart", (event) => {
+        loadNewImage();
+      });
+
+      function loadNewImage() {
+        if (displayedImages.size < images.length) {
+          let randomIndex;
+
+          // Ensure the selected image hasn't been displayed before
+          do {
+            randomIndex = Math.floor(Math.random() * images.length);
+          } while (displayedImages.has(images[randomIndex]));
+
+          displayedImages.add(images[randomIndex]);
+          const randomImage = images[randomIndex];
+
+          // Create a new image element
+          const newImage = document.createElement("img");
+          newImage.src = `assets/images/${randomImage}`;
+          newImage.alt = "Random Image";
+          newImage.style.position = "absolute";
+          newImage.style.transition = "opacity 0.3s ease"; // Faster fade-out
+          newImage.style.objectFit = "contain"; // Maintain aspect ratio
+
+          // Set random size with updated maximum
+          const randomWidth = Math.floor(Math.random() * 45) + 25; // Width between 25% and 70%
+          const randomHeight = Math.floor(Math.random() * 45) + 25; // Height between 25% and 70%
+
+          newImage.style.width = `${randomWidth}%`;
+          newImage.style.height = `${randomHeight}%`;
+
+          // Calculate random position favoring corners more
+          const viewportWidth = window.innerWidth;
+          const viewportHeight = window.innerHeight;
+
+          const padding = 16; // 1em in pixels
+          const bottomPadding = viewportHeight * 0.1; // 10vh in pixels
+
+          const maxX =
+            viewportWidth - (viewportWidth * randomWidth) / 100 - padding * 2; // Adjusted for padding
+          const maxY =
+            viewportHeight -
+            (viewportHeight * randomHeight) / 100 -
+            bottomPadding -
+            padding; // Adjusted for padding
+
+          // Favor corners more: increase the corner factor
+          const cornerFavorFactor = 0.15; // Decrease to favor corners even more
+          const randomX =
+            Math.random() * maxX * cornerFavorFactor +
+            (Math.random() < 0.5 ? padding : maxX * (1 - cornerFavorFactor)); // Randomly favor left or right
+          const randomY =
+            Math.random() * maxY * cornerFavorFactor +
+            (Math.random() < 0.5 ? padding : maxY * (1 - cornerFavorFactor)); // Randomly favor top or bottom
+
+          newImage.style.left = `${randomX}px`;
+          newImage.style.top = `${randomY}px`;
+
+          // Append the new image to the body
+          document.body.appendChild(newImage);
+
+          // Set a timeout to remove the image after 15 seconds
+          setTimeout(() => {
+            newImage.style.opacity = "0"; // Fade out
+            setTimeout(() => {
+              newImage.remove(); // Remove from DOM after fade out
+              displayedImages.delete(randomImage); // Make image eligible to load again
+            }, 300); // Match the duration of the fade out
+          }, 15000); // 15 seconds
+
+          // Show the image if it was hidden
+          newImage.style.display = "block";
+        }
+      }
+    </script>
+  </body>
+</html>
