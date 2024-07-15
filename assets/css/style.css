@@ -73,13 +73,12 @@ footer {
   }
 
   body {
-    font-size: 0.95rem; /* Adjust font size for smaller screens */
-    line-height: 1.1rem;
+    font-size: 1.05rem; /* Adjust font size for smaller screens */
+    line-height: 1.2rem;
     margin: 0;
     padding: 0 !important;
   }
-
-  #random-image {
+  s #random-image {
     max-width: 80%; /* Ensure images don't overflow on mobile */
   }
 
