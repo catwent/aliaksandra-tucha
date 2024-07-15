@@ -24,6 +24,7 @@ html {
   width: 100%; /* Ensures full width */
   background-color: #ffffff; /* Changed background color to white */
   font-family: "EBGaramond", Garamond, serif;
+  font-variant-numeric: oldstyle-nums;
   font-size: 1.4rem;
   position: relative; /* Allows absolute positioning of the image */
   padding: 0.5em 0.5em 7vh; /* Increase bottom padding to 15vh while keeping others at 1em */
