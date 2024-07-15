@@ -48,7 +48,7 @@
       // Function to change a random text color to black
       function changeRandomTextColor() {
         let availableIndices = colorState
-          .map((state, index) => (state ? null : index))
+          .map((state, index) => (state || index < 2 ? null : index))
           .filter((index) => index !== null);
 
         if (availableIndices.length > 0) {
@@ -64,8 +64,10 @@
 
           // Reset color after 15 seconds
           setTimeout(function () {
-            statementSpans[randomIndex].style.color = "white";
-            colorState[randomIndex] = false;
+            if (randomIndex >= 2) {
+              statementSpans[randomIndex].style.color = "white";
+              colorState[randomIndex] = false;
+            }
           }, 15000);
         }
       }
@@ -99,7 +101,7 @@
             isCooldown = true; // Set cooldown
             setTimeout(() => {
               isCooldown = false; // Reset cooldown
-            }, 200); // Cooldown period (adjust as needed)
+            }, 500); // Cooldown period (adjust as needed)
           }
 
           lastMouseX = event.clientX;

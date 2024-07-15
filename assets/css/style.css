@@ -4,6 +4,16 @@
   src: url(../fonts/EBGaramond-VariableFont_wght.ttf);
 }
 
+@font-face {
+  font-family: CormorantGaramondM;
+  src: url(../fonts/CormorantGaramond-Medium.ttf);
+}
+
+@font-face {
+  font-family: GaramontAmsterdamEFRoman;
+  src: url(../fonts/Garamont_Amsterdam_EF_Roman.ttf);
+}
+
 /* -------------------- STYLES -------------------- */
 
 body,
@@ -13,7 +23,7 @@ html {
   height: 100%;
   width: 100%; /* Ensures full width */
   background-color: #ffffff; /* Changed background color to white */
-  font-family: "EBGaramond", Garamond, serif;
+  font-family: "CormorantGaramondM", Garamond, serif;
   font-size: 1.4rem;
   position: relative; /* Allows absolute positioning of the image */
   padding: 0.5em 0.5em 7vh; /* Increase bottom padding to 15vh while keeping others at 1em */
