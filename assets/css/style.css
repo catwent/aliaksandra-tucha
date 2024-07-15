@@ -23,7 +23,7 @@ html {
   height: 100%;
   width: 100%; /* Ensures full width */
   background-color: #ffffff; /* Changed background color to white */
-  font-family: "CormorantGaramondM", Garamond, serif;
+  font-family: "EBGaramond", Garamond, serif;
   font-size: 1.4rem;
   position: relative; /* Allows absolute positioning of the image */
   padding: 0.5em 0.5em 7vh; /* Increase bottom padding to 15vh while keeping others at 1em */
@@ -85,7 +85,6 @@ footer {
   body {
     font-size: 1.05rem; /* Adjust font size for smaller screens */
     line-height: 1.2rem;
-    -webkit-text-stroke: 0.1rem black;
     margin: 0;
     padding: 0 !important;
   }
